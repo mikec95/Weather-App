@@ -1,10 +1,10 @@
-/*
+/**
  *This script will decide if location services are turned on device.
  *Get the latitude and longitude 
  *Then use latitude and longitude to create .json object from wunderground api
  *Then decide the current weather of that location by reading .json object
  *also shows specific greeting based on time of day
- */
+ **/
 
 //determine if location services are enabled
 if (navigator.geolocation) {
@@ -64,22 +64,22 @@ if (navigator.geolocation) {
           $(".weather-app-container").css('background-image', 'url(images/jpg/nt_clear.jpg)');
           break;
         case (rain):
-          $(".weather-app-container").css('background-image', 'urla(images/jpg/rain-day.jpg)');
+          $(".weather-app-container").css('background-image', 'url(images/jpg/rain-day.jpg)');
           break;
         case (nt_rain):
-          $(".weather-app-container").css('background-image', 'urla(images/jpg/nt_rain.jpg)');
+          $(".weather-app-container").css('background-image', 'url(images/jpg/nt_rain.jpg)');
           break;
         case (snow):
-          $(".weather-app-container").css('background-image', 'urla(images/jpg/snow.jpg)');
+          $(".weather-app-container").css('background-image', 'url(images/jpg/snow.jpg)');
           break;
         case (nt_snow):
-          $(".weather-app-container").css('background-image', 'urla(images/jpg/nt_snow.jpg)');
+          $(".weather-app-container").css('background-image', 'url(images/jpg/nt_snow.jpg)');
           break;
         case (partlycloudy):
-          $(".weather-app-container").css('background-image', 'urla(images/jpg/partlycloudy.jpg)');
+          $(".weather-app-container").css('background-image', 'url(images/jpg/partlycloudy.jpg)');
           break;
         case (nt_partlycloudy):
-          $(".weather-app-container").css('background-image', 'urla(images/jpg/nt_partlycloudy.jpg)');
+          $(".weather-app-container").css('background-image', 'url(images/jpg/nt_partlycloudy.jpg)');
           break;
         default:
           $(".weather-app-container").css('background-color', 'black');
