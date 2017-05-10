@@ -1,10 +1,10 @@
-/**
+/*
  *This script will decide if location services are turned on device.
  *Get the latitude and longitude 
  *Then use latitude and longitude to create .json object from wunderground api
  *Then decide the current weather of that location by reading .json object
  *also shows specific greeting based on time of day
- **/
+ */
 
 //determine if location services are enabled
 if (navigator.geolocation) {
@@ -47,73 +47,62 @@ if (navigator.geolocation) {
       locationTime = locationTime.replace(/['"]+/g, '');
       locationTime = locationTime.replace("-0400", "");
 
-      //show specific greeting and background based on time of day and weather
-      var date = new Date();
-      var hours = date.getHours();
-      var clearDawn = Boolean(icon === "clear" && hours < 6);
-      var clearMorning = Boolean(icon === "clear" && hours < 12);
-      var clearAfternoon = Boolean(icon === "clear" && hours < 14);
-      var clearNight = Boolean(icon === "clear" && hours < 24);
-      var partlycloudyDawn = Boolean(icon === "partlycloudy" && hours < 6);
-      var partlycloudyMorning = Boolean(icon === "partlycloudy" && hours < 12);
-      var partlycloudyAfternoon = Boolean(icon === "partlycloudy" && hours < 14);
-      var partlycloudyNight = Boolean(icon === "partlycloudy" && hours < 24);
-      var rainyDawn = Boolean(icon === "rain" && hours < 6);
-      var rainyMorning = Boolean(icon === "rain" && hours < 12);
-      var rainyAfternoon = Boolean(icon === "rain" && hours < 14);
-      var rainyNight = Boolean(icon === "rain" && hours < 24);
+      //show specific background based on weather
+      var clear = Boolean(icon === "clear");
+      var nt_clear = Boolean(icon === "nt_clear");
+      var rain = Boolean(icon === "rain");
+      var nt_rain = Boolean(icon === "nt_rain");
+      var snow = Boolean(icon === "snow");
+      var nt_snow = Boolean(icon === "nt_snow");
+      var partlycloudy = Boolean(icon === "partlycloudy");
+      var nt_partlycloudy = Boolean(icon === "nt_partlycloudy");
       switch (true) {
-        case (clearDawn):
-          $("#title").html("Good Morning!");
-          $(".weather-app-container").css('background-image', 'url(images/jpg/clear-night.jpg)');
+        case (clear):
+          $(".weather-app-container").css('background-image', 'url(images/jpg/clear.jpg)');
           break;
-        case (clearMorning):
-          $("#title").html("Good Morning!");
-          $(".weather-app-container").css('background-image', 'url(images/jpg/clear-morning.jpg)');
+        case (nt_clear):
+          $(".weather-app-container").css('background-image', 'url(images/jpg/nt_clear.jpg)');
           break;
-        case (clearAfternoon):
+        case (rain):
+          $(".weather-app-container").css('background-image', 'urla(images/jpg/rain-day.jpg)');
+          break;
+        case (nt_rain):
+          $(".weather-app-container").css('background-image', 'urla(images/jpg/nt_rain.jpg)');
+          break;
+        case (snow):
+          $(".weather-app-container").css('background-image', 'urla(images/jpg/snow.jpg)');
+          break;
+        case (nt_snow):
+          $(".weather-app-container").css('background-image', 'urla(images/jpg/nt_snow.jpg)');
+          break;
+        case (partlycloudy):
+          $(".weather-app-container").css('background-image', 'urla(images/jpg/partlycloudy.jpg)');
+          break;
+        case (nt_partlycloudy):
+          $(".weather-app-container").css('background-image', 'urla(images/jpg/nt_partlycloudy.jpg)');
+          break;
+        default:
+          $(".weather-app-container").css('background-color', 'black');
+      }
+
+      //set title based on time of day
+      var day = new Date();
+      var hours = day.getHours();
+      var morning = Boolean(hours < 12);
+      var afternoon = Boolean(hours < 16);
+      var night = Boolean(hours < 24);
+      switch (true) {
+        case (morning):
+          $("#title").html("Good Morning!");
+          break;
+        case (afternoon):
           $("#title").html("Good Afternoon!");
-          $(".weather-app-container").css('background-image', 'url(images/jpg/clear-afternoon.jpg)');
           break;
-        case (clearNight):
+        case (night):
           $("#title").html("Good Evening!");
-          $(".weather-app-container").css('background-image', 'url(images/jpg/clear-night.jpg)');
-          break;
-        case (partlycloudyDawn):
-          $("#title").html("Good Morning!");
-          $(".weather-app-container").css('background-image', 'url(images/jpg/partlycloudy-night.jpg)');
-          break;
-        case (partlycloudyMorning):
-          $("#title").html("Good Morning!");
-          $(".weather-app-container").css('background-image', 'url(images/jpg/partlycloudy-morning.jpg)');
-          break;
-        case (partlycloudyAfternoon):
-          $("#title").html("Good Afternoon!");
-          $(".weather-app-container").css('background-image', 'url(images/jpg/partlycloudy-afternoon.jpg)');
-          break;
-        case (partlycloudyNight):
-          $("#title").html("Good Evening!");
-          $(".weather-app-container").css('background-image', 'url(images/jpg/partlycloudy-night.jpg)');
-          break;
-        case (rainyDawn):
-          $("#title").html("Good Morning!");
-          $(".weather-app-container").css('background-image', 'url(images/jpg/rainy-night.jpg)');
-          break;
-        case (rainyMorning):
-          $("#title").html("Good Morning!");
-          $(".weather-app-container").css('background-image', 'url(images/jpg/rainy-morning.jpg)');
-          break;
-        case (rainyAfternoon):
-          $("#title").html("Good Afternoon!");
-          $(".weather-app-container").css('background-image', 'url(images/jpg/rainy-afternoon.jpg)');
-          break;
-        case (rainyNight):
-          $("#title").html("Good Evening!");
-          $(".weather-app-container").css('background-image', 'url(images/jpg/rainy-night.jpg)');
           break;
         default:
           $("#title").html("Welcome!");
-          $(".weather-app-container").css('background-color', 'black');
       }
 
       //output location and temperature with ability to switch between Farenheit and Celsius 
