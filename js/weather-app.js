@@ -8,7 +8,7 @@
 
 const apiKey = config.API_KEY;
 const url = `api.openweathermap.org/`;
-console.log(apiKey);
+
 //determine if location services are enabled
 if (navigator.geolocation) {
   navigator.geolocation.getCurrentPosition(function (position) {
